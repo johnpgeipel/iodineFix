@@ -15,9 +15,7 @@ function form() {
       Iodine.setErrorMessage("matchingPassword", "Password confirmation needs to match password")
       Iodine.rule("username", (value, param) => value.length >= param);
       Iodine.setErrorMessage("username", "${i18n['username.errorMessage']}");
-      
-      // Iodine.messages.matchingPassword =
-      //   "Password confirmation needs to match password";
+      Iodine.messages.matchingPassword = "Password confirmation needs to match password";
       //Store an array of all the input elements with 'data-rules' attributes
       this.inputElements = [...this.$el.querySelectorAll("input[data-rules]")];
       this.initDomData();
@@ -42,20 +40,22 @@ function form() {
     },
     getErrorMessage: function (ele) {
       //Return any server errors if they're present
-      // if (this[ele.name].serverErrors.length > 0) {
-      //   return input.serverErrors[0];
-      // }
+    //   if (this[ele.name].serverErrors.length > 0) {
+    //     return input.serverErrors[0];
+    //   }
+      this[ele.name].serverErrors.length > 0 ? input.serverErrors[0] : null;
       //Check using iodine and return the error message only if the element has not been blurred
       const error = Iodine.assert(ele.value, JSON.parse(ele.dataset.rules));
       console.log(ele.value);
       console.log(ele.dataset.rules);
       console.log(error);
-      if (error !== true && this[ele.name].blurred) {
+      error !== true && this[ele.name].blurred ? error.error : "";
+    //   if (error !== true && this[ele.name].blurred) {
         
-        return error.error;
-      }
-      //return empty string if there are no errors
-      return "";
+    //     return error.error;
+    //   }
+    //   return empty string if there are no errors
+    //   return "";
     },
     submit: function (event) {
       const invalidElements = this.inputElements.filter((input) => {

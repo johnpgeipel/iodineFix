@@ -9,7 +9,6 @@
 <body>
     <form action="" x-data="form" @focusout="change" @input="change" @submit="submit">
         <h1>Register</h1>
-      
         <label for="username">Username</label>
         <input name="username" id="username" type="text" x-bind:class="{'invalid':username.errorMessage}" data-rules='["required", "username:5"]' data-server-errors='[]'>
         <p class="error-message" x-show="username.errorMessage"  x-text="username.errorMessage"  x-transition:enter x-cloak></p>
