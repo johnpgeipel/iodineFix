@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" x-data="form" @focusout="change" @input="change" @submit="submit">
+        <h1>Register</h1>
+      
+        <label for="username">Username</label>
+        <input name="username" id="username" type="text" x-bind:class="{'invalid':username.errorMessage}" data-rules='["required", "username:5"]' data-server-errors='[]'>
+        <p class="error-message" x-show="username.errorMessage"  x-text="username.errorMessage"  x-transition:enter x-cloak></p>
+      
+        <label for="email">Email</label>
+        <input name="email" type="email" id="email" x-bind:class="{'invalid':email.errorMessage}" data-rules='["required","email"]' data-server-errors='[]'>
+        <p class="error-message" x-show="email.errorMessage" x-text="email.errorMessage"x cloak x-transition:enter></p>
+      
+        <label for="password">Password</label>
+        <input name="password" type="password" id="password" x-bind:class="{'invalid':password.errorMessage}" data-rules='["required","minimum:8"]' data-server-errors='[]'>
+        <p class="error-message" x-show="password.errorMessage" x-text="password.errorMessage" x-transition:enter></p>
+      
+        <label for="passwordConf">Confirm Password</label>
+        <input name="passwordConf" type="password" id="passwordConf" x-bind:class="{'invalid':passwordConf.errorMessage}" data-rules='["required","minimum:8","matchingPassword"]' data-server-errors='[]'>
+        <p class="error-message" x-show="passwordConf.errorMessage" x-text="passwordConf.errorMessage" x-transition:enter></p>
+      
+        <input type="submit">
+      </form>
+</body>
+</html>
